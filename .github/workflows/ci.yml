@@ -24,5 +24,15 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
+      - name: Verificar e criar o arquivo env.json
+        run: |
+          if [ ! -f ./tests/env.json ]; then
+            echo "Arquivo env.json não encontrado, criando um arquivo padrão."
+            echo '{
+              "variable1": "valor1",
+              "variable2": "valor2"
+            }' > ./tests/env.json
+          fi
+
       - name: Run API tests with Newman
         run: newman run ./tests/api-collection.json -e ./tests/env.json
