@@ -24,8 +24,9 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Verificar e criar o arquivo env.json
+      - name: Verificar e criar o diretório tests/env.json
         run: |
+          mkdir -p ./tests
           if [ ! -f ./tests/env.json ]; then
             echo "Arquivo env.json não encontrado, criando um arquivo padrão."
             echo '{
